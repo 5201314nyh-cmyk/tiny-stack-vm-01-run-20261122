@@ -35,11 +35,12 @@ function run(p, inp) {
     const op = p[pc];
     const s = SH[op];
     if (!s) return done(5);
-    if (pc + s[0] >= n) return done(9);
+    const im = s[0], need = s[1], give = s[2];
+    if (pc + im >= n) return done(9);
     steps++;
-    const nx = pc + 1 + s[0];
-    if (sp < s[1]) return done(2);
-    if (sp - s[1] + s[2] > 256) return done(3);
+    const nx = pc + 1 + im;
+    if (sp < need) return done(2);
+    if (sp - need + give > 256) return done(3);
     pc = nx;
     switch (op) {
       case 0:
